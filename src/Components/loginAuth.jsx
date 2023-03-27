@@ -14,7 +14,7 @@ const LoginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
   
     return (
       <div className={styles.containerForm}>
-            <img className={styles.imgLoginAuth} src="src/assets/image/loginAuth.png" alt="loginAuth.png" />
+            <img className={styles.imgLoginAuth} src="src/assets/loginAuth.png" alt="loginAuth.png" />
         {/* seccion del formulario */}
         <section className={styles.containerFormImg}>
         <form className={styles.form} onSubmit={submitHandler}>
