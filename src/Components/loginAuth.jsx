@@ -11,6 +11,7 @@ const loginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
   
     return (
       <div className={styles.containerForm}>
+        <div id='particule-js'></div>
             <img className={styles.imgLoginAuth} src="./loginAuth.png" alt="loginAuth.png" />
         {/* seccion del formulario */}
         <section className={styles.containerFormImg}>

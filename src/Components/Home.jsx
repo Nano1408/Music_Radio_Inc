@@ -49,7 +49,7 @@ const Home = () => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <main>
+        <main className={styles.containerMain}>
           <section className={styles.containerAlbum}>
           {albums.map((album) => (
             <div key={album.idAlbum}>

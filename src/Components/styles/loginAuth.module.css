@@ -9,10 +9,9 @@ body{
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 3% !important;
   margin: 0 auto;
   justify-items: center;
-    /* display: grid; */
-    /* grid-template-columns: repeat(2, 1fr); */
   }
   
   .containerFormImg {
@@ -104,5 +103,19 @@ body{
   .btnRegister {
     display: flex;
     justify-content: center;
+  }
+  
+  @media screen and (max-width: 900px) {
+    .imgLoginAuth {
+      display: none;
+    }
+    .containerFormImg {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto 100px;
+    }
   }
   
