@@ -8,8 +8,9 @@
     align-items: center;
 }
 .headerUl li{
+    display: flex;
     list-style: none;
-    color: #fff;
+    color: #3d048c;
 }
 button{
     background-color: #ff00b4;
@@ -24,10 +25,10 @@ button{
     align-items: center;
   }
 .containerAlbum h2{
-    color: #fff;
+    color: #000000;
 }
 .containerAlbum p{
-    color: #fff;
+    color: #000000;
     font-size: 30px;
     margin-bottom: 100px;
 }

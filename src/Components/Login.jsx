@@ -9,7 +9,7 @@ const Login = ({ setUsuario }) => {
   const guardarUsuarioEnLocalStorage = (usuario) => {
     localStorage.setItem('usuario', JSON.stringify(usuario));
   };
-// se crea
+// se funcion de capturar los datos y guardarlos para el registro Users
   const crearUsuario = async (
     Correo,
     Password,
@@ -21,6 +21,12 @@ const Login = ({ setUsuario }) => {
     telefono
   ) => {
     try {
+
+      const verificarExpiracionContrasena = (fechaExpiracion) => {
+        const diff = moment(fechaExpiracion).diff(moment(), 'days'); // calcular la diferencia de días entre la fecha de expiración y la fecha actual
+        return diff < 0; // si la diferencia es menor a cero, la contraseña ha expirado
+      }
+
       const usuarioFirebase = await app
         .auth()
         .createUserWithEmailAndPassword(Correo, Password);
@@ -33,7 +39,8 @@ const Login = ({ setUsuario }) => {
         numIdentificacion: numIdentificacion,
         direccion: direccion,
         ciudad: ciudad,
-        telefono: telefono
+        telefono: telefono,
+        fechaExpiracion: moment().add(90, 'days').toDate() // fecha de expiración a 90 días a partir de la fecha actual
       };
       await setDoc(doc(db, 'Usuarios Music_Radio_Inc', usuarioFirebase.user.uid), usuario);
 
@@ -51,6 +58,21 @@ const Login = ({ setUsuario }) => {
       console.log('sesion iniciada: ', usuarioFirebase.user);
       guardarUsuarioEnLocalStorage(usuarioFirebase);
       setUsuario(usuarioFirebase);
+
+      const db = getFirestore(app);
+      const docRef = doc(db, 'Usuarios Usuario_Musi_Radio', usuarioFirebase.user.uid);
+      const docSnap = await getDoc(docRef);
+      const usuario = docSnap.data();
+      const fechaExpiracion = usuario.fechaExpiracion;
+
+      // Comprobar si la contraseña ha expirado
+    const contrasenaExpirada = verificarExpiracionContrasena(fechaExpiracion);
+    if (contrasenaExpirada) {
+      // Si la contraseña ha expirado, redirigir al usuario a una página para restablecer la contraseña
+      console.log('La contraseña ha expirado');
+      // redirigir a la página de restablecimiento de contraseña
+    }
+
     } catch (error) {
       alert('Error! correo y/o contraseña incorrecto');
     }

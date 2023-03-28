@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles/loginAuth.module.css'
 
-const LoginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const loginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
     const [Nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [numIdentificacion, setnumIdentificacion] = useState('');
@@ -14,15 +11,20 @@ const LoginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
   
     return (
       <div className={styles.containerForm}>
-            <img className={styles.imgLoginAuth} src="src/assets/loginAuth.png" alt="loginAuth.png" />
+            <img className={styles.imgLoginAuth} src="./loginAuth.png" alt="loginAuth.png" />
         {/* seccion del formulario */}
         <section className={styles.containerFormImg}>
         <form className={styles.form} onSubmit={submitHandler}>
+          {/* titulo iniciar sesion o registrate */}
         <h1 className={styles.titleLoginAuth}>{isRegistrando ? 'Registrarme' : 'Iniciar Sesion'}</h1>
+        {/* png moreno knabel laemel titok dibujo animate */}
+        <img className={styles.khabyLamel} src="./dibujo-khaby-lame.png" alt="khaby_lamel.png" />
           <label htmlFor='emailField'>Correo</label>
           <input type='email' id='emailField' name='emailField' required placeholder='Escribe tu Correo...'/>
           <label htmlFor='passwordField' autoComplete="current-password">Contraseña</label>
           <input type='password' id='passwordField' name='passwordField' required placeholder='Escribe tu Contraseña...'/>
+
+          {/* si se esta registrando se muestra este otro formulario */}
           {isRegistrando && (
             <>
             {/* nombre */}
@@ -57,4 +59,4 @@ const LoginAuth = ({ isRegistrando, setIsRegistrando, submitHandler }) => {
     );
   };
 
-export default LoginAuth;
+export default loginAuth;
