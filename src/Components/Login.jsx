@@ -74,7 +74,11 @@ const Login = ({ setUsuario }) => {
     }
 
     } catch (error) {
-      alert('Error! correo y/o contraseña incorrecto');
+      if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+        alert('Error! correo y/o contraseña incorrecto');
+      } else {
+        throw error; // lanzar el error para que sea manejado por otro bloque catch
+      }
     }
   };
 
