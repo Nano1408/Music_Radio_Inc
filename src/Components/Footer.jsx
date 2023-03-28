@@ -7,22 +7,23 @@ const Footer = () => {
     <>
     <footer className={styles.containerFooterClean}>
         <ul className={styles.footerClean}>
-            <h3>Services</h3>
-            <li>Web design</li>
-            <li>Development</li>
-            <li>Hosting</li>
+            <h3>Music Radio Inc</h3>
+            <li>Dispositivos</li>
+            <li>Tarjeta de regalo</li>
+            <li>Ayuda</li>
         </ul>
         <ul className={styles.footerClean}>
-            <h3>About</h3>
-            <li>Company</li>
-            <li>Team</li>
-            <li>Legacy</li>
+            <h3>Caracteristicas</h3>
+            <li>Flow</li>
+            <li>Identifica canciones</li>
+            <li>Music Letra</li>
+            <li>Reproduccion sin conexión</li>
         </ul>
         <ul className={styles.footerClean}>
-            <h3>Carers</h3>
-            <li>Job openings</li>
-            <li>Employee success</li>
-            <li>Benefits</li>
+            <h3>Quienes somos?</h3>
+            <li>Grupo de musicos</li>
+            <li>Desarrolladores</li>
+            <li>Podcasters</li>
         </ul>
         <div>
 
