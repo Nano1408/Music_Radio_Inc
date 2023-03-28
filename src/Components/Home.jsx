@@ -35,13 +35,8 @@ const Home = () => {
     <>
       <header>
         <ul className={styles.headerUl}>
-          <li>
-            <h1> Music Radio Inc</h1>
-          </li>
-          <li>
-            <button>Buy Now</button>
-            <button className={styles.cerrarSesion} onClick={cerrarSesion}>Cerrar sesion</button>
-          </li>
+          <li><h1> Music Radio Inc</h1></li>
+          <li><button>Buy Now</button><button className={styles.cerrarSesion} onClick={cerrarSesion}>Cerrar sesion</button></li>
         </ul>
       </header>
       {isLoading ? (
