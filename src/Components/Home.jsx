@@ -4,6 +4,7 @@ import { app } from '../fb';
 import styles from './styles/home.module.css'
 
 const Home = () => {
+
   const cerrarSesion = () => {
     app.auth().signOut();
   }
@@ -36,11 +37,14 @@ const Home = () => {
       <header>
         <ul className={styles.headerUl}>
           <li><h1> Music Radio Inc</h1></li>
-          <li><button>Buy Now</button><button className={styles.cerrarSesion} onClick={cerrarSesion}>Cerrar sesion</button></li>
+          <li>
+            <button className={styles.hidden}>Buy Now</button>
+            <button className={`${styles.cerrarSesion} hidden`} onClick={cerrarSesion}>Cerrar sesion</button>
+            </li>
         </ul>
       </header>
       {isLoading ? (
-        <p>Cargando...</p>
+        <div className={styles.ldsSpinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
       ) : error ? (
         <p>{error}</p>
       ) : (
