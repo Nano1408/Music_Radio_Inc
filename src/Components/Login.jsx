@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { app } from '../fb';
 import LoginAuth from './LoginAuth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { sendPasswordResetEmail } from "firebase/auth";
+import { getFirestore, doc, setDoc} from 'firebase/firestore';
 
 const Login = ({ setUsuario }) => {
   const [isRegistrando, setIsRegistrando] = useState(false);
@@ -22,13 +23,7 @@ const Login = ({ setUsuario }) => {
   ) => {
     try {
 
-      const verificarExpiracionContrasena = (fechaExpiracion) => {
-        const diff = moment(fechaExpiracion).diff(moment(), 'days'); // calcular la diferencia de días entre la fecha de expiración y la fecha actual
-        return diff < 0; // si la diferencia es menor a cero, la contraseña ha expirado
-      }
-
-      const usuarioFirebase = await app
-        .auth()
+      const usuarioFirebase = await app.auth()
         .createUserWithEmailAndPassword(Correo, Password);
       // Guardar información del usuario en Firestore
       const db = getFirestore(app);
@@ -40,15 +35,22 @@ const Login = ({ setUsuario }) => {
         direccion: direccion,
         ciudad: ciudad,
         telefono: telefono,
-        fechaExpiracion: moment().add(90, 'days').toDate() // fecha de expiración a 90 días a partir de la fecha actual
       };
+      // recoge la info de crear usuario y la guarda en la base de datos
       await setDoc(doc(db, 'Usuarios Music_Radio_Inc', usuarioFirebase.user.uid), usuario);
 
       console.log('usuario creado: ', usuarioFirebase, usuario);
       guardarUsuarioEnLocalStorage(usuarioFirebase);
+
       setUsuario(usuarioFirebase);
+
     } catch (error) {
-      // manejo de errores
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error! No se pudo crear el usuario intenta de nuevo!',
+        footer: `<a href=${isRegistrando}>Clic aqui para intentar de nuevo...</a>`
+      })
     }
   };
 
@@ -59,25 +61,54 @@ const Login = ({ setUsuario }) => {
       guardarUsuarioEnLocalStorage(usuarioFirebase);
       setUsuario(usuarioFirebase);
 
-      const db = getFirestore(app);
-      const docRef = doc(db, 'Usuarios Usuario_Musi_Radio', usuarioFirebase.user.uid);
-      const docSnap = await getDoc(docRef);
-      const usuario = docSnap.data();
-      const fechaExpiracion = usuario.fechaExpiracion;
-
-      // Comprobar si la contraseña ha expirado
-    const contrasenaExpirada = verificarExpiracionContrasena(fechaExpiracion);
-    if (contrasenaExpirada) {
-      // Si la contraseña ha expirado, redirigir al usuario a una página para restablecer la contraseña
-      console.log('La contraseña ha expirado');
-      // redirigir a la página de restablecimiento de contraseña
-    }
-
     } catch (error) {
       if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
-        alert('Error! correo y/o contraseña incorrecto');
+        // sweet Alert
+        Swal.fire({
+          title: 'Error! Contraseña Y/O Correo incorrectos',
+          confirmButtonColor: '#000',
+          icon: 'error',
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+
       } else {
         throw error; // lanzar el error para que sea manejado por otro bloque catch
+      }
+    }
+  };
+
+  const restablecerContrasena = async (e) => {
+    e.preventDefault();
+
+    const { value: email } = await Swal.fire({
+      title: 'Ingresa tu correo electronico',
+      input: 'email',
+      showCancelButton: true,
+      inputLabel: 'A tu correo electronico te llegara las introcciones para restablecer tu contraseña',
+      inputPlaceholder: 'Enter your email address'
+    })
+
+    if (email) {
+      try {
+        await sendPasswordResetEmail(app.auth(), email);
+        Swal.fire({
+          title: 'Listo!',
+          text: 'Se ha enviado un correo electrónico con un enlace para restablecer la contraseña.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'No se pudo enviar el correo electrónico para restablecer la contraseña.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
       }
     }
   };
@@ -140,6 +171,7 @@ const Login = ({ setUsuario }) => {
       isRegistrando={isRegistrando}
       setIsRegistrando={setIsRegistrando}
       submitHandler={submitHandler}
+      restablecerContrasena={restablecerContrasena}
     />
   );
 };
