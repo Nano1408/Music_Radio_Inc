@@ -47,7 +47,7 @@ const loginAuth = ({ isRegistrando, setIsRegistrando, submitHandler, restablecer
                 <input type="text" id='telefonoField' name='telefonoField' value={telefono} onChange={(e) => settelefono(e.target.value)}placeholder='Escribe tu Celular o Telefono...'/>
               </>
             )}
-            <button type='submit'>{isRegistrando ? 'Registrarme' : 'Iniciar Sesion'}</button>
+            <button className={styles.btnLoginRegister} type='submit'>{isRegistrando ? 'Registrarme' : 'Iniciar Sesion'}</button>
         </form>
         <div className={styles.btnRegister}>
         <button onClick={() => setIsRegistrando(!isRegistrando)}>

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { GiHamburgerMenu } from "react-icons/gi";
 import Footer from './Footer';
 import { app } from '../fb';
 import styles from './styles/home.module.css'
@@ -13,7 +14,12 @@ const Home = () => {
   const [albumsVideo, setAlbumsVideo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const [menu, setMenu] = useState(false);
+
+  const togleMenu = () => {
+    setMenu(!menu)
+  }
+   
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -39,18 +45,19 @@ const Home = () => {
     fetchData();
   }, []);
 
-
 // DOM de la pagina
   return (
     <>
     {/* header encabezado */}
       <header>
         <ul className={styles.headerUl}>
-          <li><h1> Music Radio Inc</h1></li>
-          <li>
+          <img className={styles.imgLogoHome} src="./Logo_Music_Radio_Inc.png" alt="Logo_Music_Radio_inc.png" />
+          <li className={`${menu ? styles.active : ''}`}>
             <button className={styles.hidden}>Buy Now</button>
-            <button className={`${styles.cerrarSesion} hidden`} onClick={cerrarSesion}>LogOut</button>
-            </li>
+            <button className={`${styles.hidden}`} onClick={cerrarSesion}>LogOut</button>
+          </li>
+
+            <h3> <GiHamburgerMenu className={styles.iconBurgerMenu} onClick={togleMenu} /> </h3>
         </ul>
       </header>
       {/* loading antes de cargar los datos */}

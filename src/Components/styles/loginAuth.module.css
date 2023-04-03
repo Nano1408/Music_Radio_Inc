@@ -50,6 +50,7 @@ body{
     color: #ad57df;
     font-size: 2rem;
     margin-bottom: -1rem;
+    margin-top: 0;
   }
   .khabyLamel{
     width: 150px;
@@ -91,13 +92,17 @@ body{
     color: #281c63;
   }
 
+  .btnLoginRegister{
+    background-color: #130e2b;
+  }
+
   button {
     width: 100%;
     padding: 0.5rem;
+    font-weight: bold;
     margin-top: 1rem;
     border-radius: 0.5rem;
     border: none;
-    background-color: #ad57df;
     color: #fff;
     transition: .3s;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -106,6 +111,7 @@ body{
 
   .containerFormImg button:hover{
     transform: scale(1.03);
+    background-color: #472256;
   }
 
   .containerFormImg .btnRegister button{
