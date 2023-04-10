@@ -31,8 +31,24 @@ body{
     max-width: 450px;
     border-radius: 10px;
     height: 450px;
+    /* animation:imgLoginAuth .8s linear both; */
+    animation:slide-bottom .7s linear both;
     overflow: hidden;
   }
+  
+  /* @keyframes imgLoginAuth {
+    0%, 100%{transform:translateX(0);transform-origin:50% 50%}
+    15%{transform:translateX(-30px) rotate(6deg)}
+    30%{transform:translateX(25px) rotate(-6deg)}
+    45%{transform:translateX(-25px) rotate(3.6deg)}
+    60%{transform:translateX(9px) rotate(-2.4deg)}
+    75%{transform:translateX(-6px) rotate(1.2deg)}
+  } */
+
+@keyframes slide-bottom{
+  0%{transform:translateY(1000px)}
+  100%{transform:translateY(0px)}
+}
   
   .form {
     display: flex;
@@ -40,10 +56,18 @@ body{
     justify-content: center;
     padding-bottom: 5px;
     align-items: center;
+    animation:slide-ContainerForm .8s linear both;
+  }
+
+  @keyframes slide-ContainerForm{
+    0%{transform:translateY(-1000px)}
+    100%{transform:translateY(0px)}
   }
 
   .form button{
     margin-top: 15px;
+    width: 100%;
+    margin-right: 0;
   }
   
   .titleLoginAuth {
@@ -116,6 +140,7 @@ body{
 
   .containerFormImg .btnRegister button{
     background-color: #281c63;
+    width: 100%;
   }
 
   .containerFormImg .btnRegister button:hover{
@@ -128,6 +153,7 @@ body{
     flex-direction: column;
     justify-content: center;
     margin-bottom: 2rem;
+    animation:slide-ContainerForm .8s linear both;
   }
 
 .passwordOlvidada{

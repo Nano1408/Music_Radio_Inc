@@ -51,7 +51,7 @@ const loginAuth = ({ isRegistrando, setIsRegistrando, submitHandler, restablecer
         </form>
         <div className={styles.btnRegister}>
         <button onClick={() => setIsRegistrando(!isRegistrando)}>
-          {isRegistrando ? 'Ya tienes cuenta? ¡Inicia Sesion' : 'No tienes cuenta ¡Registrate Gratis'}
+          {isRegistrando ? 'Ya tienes cuenta? ¡Inicia Sesion' : '¡Registrate Gratis!'}
         </button>
         {/* forgOut password */}
         <a className={styles.passwordOlvidada} onClick={restablecerContrasena}>¿Olvidaste tu contraseña?</a>
