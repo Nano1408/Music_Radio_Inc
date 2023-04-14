@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { app } from '../fb';
-import LoginAuth from './LoginAuth';
+import LoginAuth from './loginAuth.jsx';
 import { sendPasswordResetEmail } from "firebase/auth";
 import { getFirestore, doc, setDoc} from 'firebase/firestore';
 

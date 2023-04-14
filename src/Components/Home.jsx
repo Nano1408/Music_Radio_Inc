@@ -26,18 +26,18 @@ const Home = () => {
       setError(null);
 
       try {
-        const response = await fetch(`https://theaudiodb.com/api/v1/json/2/album.php?i=112024`);
+        const response = await fetch(`https://heaudiodb.com/api/v1/json/2/album.php?i=112024`);
         const data = await response.json();
         setAlbums(data.album);
 
-        const response2 = await fetch(`https://theaudiodb.com/api/v1/json/2/mvid.php?i=112024`);
+        const response2 = await fetch(`https://heaudiodb.com/api/v1/json/2/mvid.php?i=112024`);
         const data2 = await response2.json();
         setAlbumsVideo(data2.mvids)
 
         console.log(data2)
 
       } catch (error) {
-        setError('Error al obtener los datos del servidor');
+        setError('Lo siento, página no encontrada');
       }
 
       setIsLoading(false);
@@ -65,7 +65,13 @@ const Home = () => {
         // snipper de loading
         <div className={styles.ldsSpinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         ) : error ? (
-          <p>{error}</p>
+          <section className={styles.containerFontPageError}>
+            <div className={styles.divError}>
+              <img src='./fontPageError.png' alt=''className={styles.fontPageErrorPng}/>
+              <p className={styles.errorP}>{error}</p>
+              <a href='#' className={styles.buttonError}>Contactenos</a>
+            </div>
+          </section>
           ) : (
             
             // cuerpo del documento

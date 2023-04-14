@@ -201,64 +201,131 @@ button{
     }
   }
 
-  @media screen and (max-width:760px){
+/* font page estilos error */
+.containerFontPageError{
+  background-image: url('/public/BackgroundPageError.jpeg');
+  background-position: 50% 50%;
+  background-size:cover;
+  background-repeat: no-repeat;
+  margin-top: 84px;
+}
 
-    .headerUl{
-      padding: 13px 14px;
-    }
+.divError{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 40px;
+}
 
-    .iconBurgerMenu{
-      display: flex;
-    }
+.errorP{
+  color: #fff;
+  font-size: 3.75rem;
+  width: 700px;
+  font-weight: 700;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
 
-    .imgLogoHome {
-      max-width: 190px;
+.fontPageErrorPng{
+  max-width: 100%;
+  height: auto;
+}
+.buttonError{
+  width: 25rem;
+  background-color: #fef4f3;
+  text-decoration: none;
+  font-size: 30px;
+  text-transform: uppercase;
+  box-shadow: 0 0 7px 0 rgba(45,106,204,0.7);
+  text-shadow: 0 0 0 rgba(0,0,0,0);
+  margin-bottom: 100px;
+  padding: 10px 0;
+  transition: .3s;
+}
+.buttonError:hover{
+  background-color: rgba(228, 231, 235, 0.7);
+  transition: .3s;
+  box-shadow: 0 0 7px 0 rgba(26, 64, 124, 0.7);
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.642);
+}
+
+/* *************************************
+MEDIA QUERY PARA EL RESPOSIVE 
+****************************************/
+@media screen and (max-width: 900px) {
+  .errorP{
+    font-size: 2.75em;
+    width: 393px;
+  }
+}
+@media screen and (max-width:760px){
+
+  .headerUl{
+    padding: 13px 14px;
   }
 
-    .headerUl li:nth-child(2) {
-      position: absolute;
-      flex-direction: column;
-      vertical-align: middle;
-      align-items: center;
-      justify-content: center;
-      background-color: #31302e94;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      top: -1000px;
-      left: -900px;
-      z-index: -1;
-      transition: all 1s ease;
-    }
-
-    .headerUl li button{
-      width: 10rem;
-      margin: 10px 15px;
-    }
-
-    .headerUl li.active{
-      top: 99%;
-      left: 0;
-      transition: all .6s ease;
-      border-radius: 0 0 80% 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #31302e;
-    }
-  
-
-    .ldsSpinner div:after {
-      top: 3px;
-      left: 37px;
-      width: 37px;
-      height: 14px;
-    }
-    .ldsSpinner div {
-      margin-top: 230px;
-      transform-origin: 1px 11px;
-      position: absolute;
-    }
+  .iconBurgerMenu{
+    display: flex;
   }
+
+  .imgLogoHome {
+    max-width: 190px;
+}
+
+  .headerUl li:nth-child(2) {
+    position: absolute;
+    flex-direction: column;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #31302e94;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    top: -1000px;
+    left: -900px;
+    z-index: -1;
+    transition: all 1s ease;
+  }
+
+  .headerUl li button{
+    width: 10rem;
+    margin: 10px 15px;
+  }
+
+  .headerUl li.active{
+    top: 99%;
+    left: 0;
+    transition: all .6s ease;
+    border-radius: 0 0 80% 0;
+    width: 100%;
+    height: 70vh;
+    background-color: #31302e;
+  }
+
+
+  .ldsSpinner div:after {
+    top: 3px;
+    left: 37px;
+    width: 37px;
+    height: 14px;
+  }
+  .ldsSpinner div {
+    margin-top: 230px;
+    transform-origin: 1px 11px;
+    position: absolute;
+  }
+
+  .buttonError{
+    width: 70%;
+    font-size: 100%;
+  }
+  ._divError_fsy2h_211 {
+    margin: 0 20px;
+}
+}
 
 @media screen and (max-width: 600px) {
   .containerAlbum {
@@ -272,6 +339,15 @@ button{
     }
     .ImgAlbum {
       max-width: 260px;
+  }
+
+  .divError{
+    padding-top: 24px;
+  }
+
+  .errorP{
+    width: 50%;
+    font-size: 1.75rem;
   }
   }
 
