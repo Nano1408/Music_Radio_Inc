@@ -26,11 +26,11 @@ const Home = () => {
       setError(null);
 
       try {
-        const response = await fetch(`https://heaudiodb.com/api/v1/json/2/album.php?i=112024`);
+        const response = await fetch(`https://theaudiodb.com/api/v1/json/2/album.php?i=112024`);
         const data = await response.json();
         setAlbums(data.album);
 
-        const response2 = await fetch(`https://heaudiodb.com/api/v1/json/2/mvid.php?i=112024`);
+        const response2 = await fetch(`https://theaudiodb.com/api/v1/json/2/mvid.php?i=112024`);
         const data2 = await response2.json();
         setAlbumsVideo(data2.mvids)
 
