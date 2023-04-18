@@ -7,10 +7,25 @@ import { getFirestore, doc, setDoc} from 'firebase/firestore';
 const Login = ({ setUsuario }) => {
   const [isRegistrando, setIsRegistrando] = useState(false);
 
+  /************************************************************** **********
+   estados de error para cada input para las condiciones dadas a cada uno
+  ***************************************************************************/
+  const [showErrorEmail, setShowErrorEmail] = useState (false);
+  const [showErrorPassword, setShowErrorPasword] = useState (false);
+  const [showErrorNombre, setShowErrorNombre] = useState (false);
+  const [showErrorApellido, setShowErrorApellido] = useState (false);
+  const [showErrorIdentificacion, setShowErrorIdentificacion] = useState (false);
+  const [showErrorDireccion, setShowErrorDireccion] = useState (false);
+  const [showErrorCiudad, setShowErrorCiudad] = useState (false);
+  const [showErrorTelefono, setShowErrorTelefono] = useState (false);
+
+
+  //localStorage para guardar inicio de sesion en local
   const guardarUsuarioEnLocalStorage = (usuario) => {
     localStorage.setItem('usuario', JSON.stringify(usuario));
   };
-// se funcion de capturar los datos y guardarlos para el registro Users
+  
+  // funcion de capturar los datos y guardarlos para el registro Users
   const crearUsuario = async (
     Correo,
     Password,
@@ -36,6 +51,7 @@ const Login = ({ setUsuario }) => {
         ciudad: ciudad,
         telefono: telefono,
       };
+
       // recoge la info de crear usuario y la guarda en la base de datos
       await setDoc(doc(db, 'Usuarios Music_Radio_Inc', usuarioFirebase.user.uid), usuario);
 
@@ -48,8 +64,8 @@ const Login = ({ setUsuario }) => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Error! No se pudo crear el usuario intenta de nuevo!',
-        footer: `<a href=${isRegistrando}>Clic aqui para intentar de nuevo...</a>`
+        text: 'Error! usuario registrado o datos incorrectos!',
+        footer: `<a href=${isRegistrando}>Clic aqui para iniciar sesion...</a>`
       })
     }
   };
@@ -65,9 +81,10 @@ const Login = ({ setUsuario }) => {
       if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
         // sweet Alert
         Swal.fire({
-          title: 'Error! Contraseña Y/O Correo incorrectos',
+          title: 'Error! Contraseña o Correo incorrecto',
           confirmButtonColor: '#000',
           icon: 'error',
+          footer: 'Intenta nuevamente dando click en Ok',
           showClass: {
             popup: 'animate__animated animate__fadeInDown'
           },
@@ -75,10 +92,10 @@ const Login = ({ setUsuario }) => {
             popup: 'animate__animated animate__fadeOutUp'
           }
         })
-
-      } else {
+      } 
+      /*else {
         throw error; // lanzar el error para que sea manejado por otro bloque catch
-      }
+      }*/
     }
   };
 
@@ -90,7 +107,7 @@ const Login = ({ setUsuario }) => {
       input: 'email',
       showCancelButton: true,
       inputLabel: 'A tu correo electronico te llegara las introcciones para restablecer tu contraseña',
-      inputPlaceholder: 'Enter your email address'
+      inputPlaceholder: 'Escribe tu Correo Electronico...'
     })
 
     if (email) {
@@ -105,7 +122,9 @@ const Login = ({ setUsuario }) => {
       } catch (error) {
         Swal.fire({
           title: 'Error!',
+          icon: 'faild',
           text: 'No se pudo enviar el correo electrónico para restablecer la contraseña.',
+          footer: 'Intenta nuevamente enviar el formulario para restablecer las credenciales',
           icon: 'error',
           confirmButtonText: 'Aceptar',
         });
@@ -119,37 +138,9 @@ const Login = ({ setUsuario }) => {
       const { emailField, passwordField, NombreField, apellidoField, numIdentificacionField, direccionField, ciudadField, telefonoField } = e.target.elements;
       const Correo = emailField.value;
       const Password = passwordField.value;
+      console.log(emailField.length);
   
     if (isRegistrando === true) {
-
-      if (numIdentificacionField.length > 15) {
-        alert('El número de identificación no debe sobrepasar los 15 caracteres.');
-        return;
-      }
-      if (passwordField.length > 20) {
-        alert('La contraseña no debe sobrepasar los 20 caracteres.');
-        return;
-      }
-      if (NombreField.length > 50) {
-        alert('El nombre no debe sobrepasar los 50 caracteres.');
-        return;
-      }
-      if (emailField.length > 50) {
-        alert('El correo electrónico debe contener un "@" y no debe sobrepasar los 50 caracteres.');
-        return;
-      }
-      if (direccionField.length > 300) {
-        alert('La dirección no debe sobrepasar los 300 caracteres.');
-        return;
-      }
-      if (ciudadField.length > 20) {
-        alert('La ciudad no debe sobrepasar los 20 caracteres.');
-        return;
-      }
-      if (telefonoField.length > 20) {
-        alert('El número de teléfono no debe sobrepasar los 20 caracteres.');
-        return;
-      }
 
       const Correo = emailField.value;
       const Password = passwordField.value;
@@ -159,9 +150,75 @@ const Login = ({ setUsuario }) => {
       const direccion = direccionField.value;
       const ciudad = ciudadField.value;
       const telefono = telefonoField.value;
+      
+      if (emailField.value.length >= 50) {
+        setShowErrorEmail(true);
+        return false;
+      } else {
+        setShowErrorEmail(false);
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(emailField.value)){
+        alert("El correo no tiene un formato válido");
+        return false;
+      }
+
+      if(passwordField.value.length >= 20){
+        setShowErrorPasword(true);
+        return false;
+      } else {
+        setShowErrorPasword(false);
+      }
+
+      if(NombreField.value.length >= 50){
+        setShowErrorNombre(true);
+        return false;
+      } else {
+        setShowErrorNombre(false);
+      }
+
+      if(apellidoField.value.length >= 50){
+        setShowErrorApellido(true);
+        return false;
+      } else {
+        setShowErrorApellido(false);
+      }
+
+      if(numIdentificacionField.value.length >= 15){
+        setShowErrorIdentificacion(true);
+        return false;
+      } else {
+        setShowErrorIdentificacion(false);
+      }
+
+      if(direccionField.value.length >= 200){
+        setShowErrorDireccion(true);
+        return false;
+      } else {
+        setShowErrorDireccion(false);
+      }
+
+      if(ciudadField.value.length >= 20){
+        setShowErrorCiudad(true);
+        return false;
+      } else {
+        setShowErrorCiudad(false);
+      }
+
+      if(telefonoField.value.length > 10){
+        console.log(telefono, "Error, mas de 10 digitos")
+        setShowErrorTelefono(true);
+        return false;
+      } else {
+        setShowErrorTelefono(false);
+      }
+
       await crearUsuario(Correo, Password, Nombre, apellido, numIdentificacion, direccion, ciudad, telefono);
+
     } else {
-      await iniciarSesion(Correo, Password);
+       await iniciarSesion(Correo, Password);
+      // alert("Te has registrado correctamente")
     }
   };
 
@@ -171,6 +228,16 @@ const Login = ({ setUsuario }) => {
       isRegistrando={isRegistrando}
       setIsRegistrando={setIsRegistrando}
       submitHandler={submitHandler}
+      // showErrores
+      showErrorEmail={showErrorEmail}
+      showErrorPassword={showErrorPassword}
+      showErrorNombre={showErrorNombre}
+      showErrorApellido={showErrorApellido}
+      showErrorIdentificacion={showErrorIdentificacion}
+      showErrorDireccion={showErrorDireccion}
+      showErrorCiudad={showErrorCiudad}
+      showErrorTelefono={showErrorTelefono}
+      // restablecer clave
       restablecerContrasena={restablecerContrasena}
     />
   );
