@@ -17,6 +17,19 @@ body{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: top left;
+  background-size: 80%;
+  }
+
+  .titleLoginAuth {
+    color: #ad57df;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+  .khabyLamel{
+    width: 150px;
+    height: 160px;
+    text-align: center;
   }
   
   .containerFormImg {
@@ -42,15 +55,6 @@ body{
   URL: https://xsgames.co/animatiss
   Twitter: @xsgames_
 ---------------------------------------------- */
-  
-  /* @keyframes imgLoginAuth {
-    0%, 100%{transform:translateX(0);transform-origin:50% 50%}
-    15%{transform:translateX(-30px) rotate(6deg)}
-    30%{transform:translateX(25px) rotate(-6deg)}
-    45%{transform:translateX(-25px) rotate(3.6deg)}
-    60%{transform:translateX(9px) rotate(-2.4deg)}
-    75%{transform:translateX(-6px) rotate(1.2deg)}
-  } */
 
 @keyframes slide-bottom{
   0%{transform:scale(.5);transform-origin:top right}
@@ -62,7 +66,8 @@ body{
     flex-direction: column;
     justify-content: center;
     padding-bottom: 5px;
-    align-items: center;
+    /* align-items: center; */
+    text-align: center;
     animation:slide-ContainerForm 0.7s linear;
   }
 /* ----------------------------------------------
@@ -77,29 +82,59 @@ body{
   }
 
   .form button{
+    /* position: relative; */
+    overflow: hidden;
     margin-top: 15px;
     width: 100%;
     margin-right: 0;
   }
-  
-  .titleLoginAuth {
-    color: #ad57df;
-    font-size: 2rem;
-    margin-bottom: -1rem;
-    margin-top: 0;
-  }
-  .khabyLamel{
-    width: 150px;
-    height: 160px;
-    text-align: center;
+  .divFormInput{
+    position: relative;
+    overflow: hidden;
   }
   
   label {
-    /* font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #44bea6;
-    margin-top: 10px; */
-    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid #271c60;
+    font-size: 1.2rem;
+    text-align: left;
+    pointer-events: none;
+    cursor: text;
+  }
+  label::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    /* bottom: -1px; */
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid #aa3c9f;
+    transform: translateX(-100%);
+    transition: all .5s ease;
+  }
+
+  .divFormInput span{
+    position: absolute;
+    color: #271c60;
+    bottom: 5px;
+    margin-left: 10px;
+    opacity: 0.5;
+  }
+
+  .divFormInput input:focus + label span, .divFormInput input:valid + label span{
+    transform: translateY(-100%);
+    transition: all .3s ease;
+    color: #271c60;
+    opacity: .7;
+  }
+
+  .divFormInput input:focus + label::after, .divFormInput input:valid + label::after{
+    background-color: none;
+    transform: translateX(0);
+    border-bottom: 3px solid #aa3c9f;
   }
   
 /* Estilos de condición error del formulario */
@@ -116,22 +151,22 @@ body{
     margin-bottom: 1rem;
     border: none !important;
     border-radius: 0.5rem;
-    background: #d3ced785;
+    color: #281c63;
+    background: none;
     border: 1px solid #ccc;
     font-size: 1.2rem;
     margin-top: 22px !important;
   }
 
-  input::placeholder{
-    color: #19123c;
-    opacity: 0.2;
-    color: #281c63;
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #fff inset !important;
   }
 
   input:focus{
     outline: none;
     border: none;
-    background-color: #d3ced7;
     color: #281c63;
   }
 
@@ -195,6 +230,20 @@ body{
   }
   
   @media screen and (max-width: 900px) {
+    .containerForm {
+    background-size: 60%;
+    }
+    .form {
+      width: 90%;
+      overflow-x: hidden;
+    }
+
+    .form button{
+      width: 200px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
     .imgLoginAuth {
       display: none;
     }
@@ -223,6 +272,20 @@ body{
   }
 
   @media screen and (max-width:500px) {
+    .containerFormImg {
+      margin: auto 50px;
+  }
+    .form {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .form button{
+      width: 200px;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
     .titleLoginAuth {
       font-size: 1.5rem;
   }

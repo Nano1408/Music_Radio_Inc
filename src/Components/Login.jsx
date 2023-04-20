@@ -122,7 +122,6 @@ const Login = ({ setUsuario }) => {
       } catch (error) {
         Swal.fire({
           title: 'Error!',
-          icon: 'faild',
           text: 'No se pudo enviar el correo electrónico para restablecer la contraseña.',
           footer: 'Intenta nuevamente enviar el formulario para restablecer las credenciales',
           icon: 'error',
@@ -210,7 +209,7 @@ const Login = ({ setUsuario }) => {
         console.log(telefono, "Error, mas de 10 digitos")
         setShowErrorTelefono(true);
         return false;
-      } else {
+      }else {
         setShowErrorTelefono(false);
       }
 
