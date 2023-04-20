@@ -27,6 +27,7 @@ body{
     margin-top: 0;
   }
   .khabyLamel{
+    margin: 0 auto;
     width: 150px;
     height: 160px;
     text-align: center;
