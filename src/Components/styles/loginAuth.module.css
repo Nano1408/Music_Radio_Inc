@@ -17,7 +17,6 @@ body{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: top left;
-  background-size: 80%;
   }
 
   .titleLoginAuth {
@@ -34,8 +33,6 @@ body{
   }
   
   .containerFormImg {
-    /* border-radius: 10px 0 0 10px; */
-    /* margin: 0 83px 0 20px; */
     margin-left: 2%;
     justify-content: center;
     align-items: center;
@@ -45,7 +42,6 @@ body{
     max-width: 450px;
     border-radius: 10px;
     height: 450px;
-    /* animation:imgLoginAuth .8s linear both; */
     animation:slide-bottom 0.7s;;
     overflow: hidden;
   }
@@ -84,7 +80,7 @@ body{
 
   .form button{
     /* position: relative; */
-    overflow: hidden;
+    /* overflow: hidden; */
     margin-top: 15px;
     width: 100%;
     margin-right: 0;
@@ -105,6 +101,7 @@ body{
     pointer-events: none;
     cursor: text;
   }
+
   label::after{
     content: '';
     position: absolute;
@@ -140,9 +137,33 @@ body{
   
 /* Estilos de condición error del formulario */
 .errorFormImputCondition{
-  margin: 29px 0 -16px 0;
-  color: red;
+  /* position: absolute;
+  bottom: 22px;
+  left: 90%; */
+  margin: 3px 0 0px 0px;
+  color: white;
+  background-color: red;
+  border-radius: 2px;
+  padding: 2px 6px;
   font-weight: 700;
+  width: fit-content;
+}
+
+.DiverrorPCondition{
+  display: flex;
+  justify-content: center;
+}
+
+/* iconos */
+h3.formularioValidacionEstado {
+	position: absolute;
+  color: #ad57df;
+  top: 5px;
+	right: 10px;
+	bottom: 0;
+	z-index: 100;
+	font-size: 24px;
+	opacity: 1;
 }
 
   input {
@@ -151,7 +172,7 @@ body{
     width: 95%;
     margin-bottom: 1rem;
     border: none !important;
-    border-radius: 0.5rem;
+    /* border-radius: 0.5rem; */
     color: #281c63;
     background: none;
     border: 1px solid #ccc;
@@ -169,6 +190,31 @@ body{
     outline: none;
     border: none;
     color: #281c63;
+  }
+  
+  input:invalid:focus {
+    color: red;
+    outline: none;
+    /* border-color: red; */
+    /* box-shadow: 0 0 10px red; */
+  }
+
+  input:valid:focus{
+    color: #107c19;
+    /* border-color: #107c19; */
+    /* box-shadow: 0 0 10px #107c19 !important; */
+  }
+
+  input:invalid::before {
+    content: "Este campo es requerido";
+    position: absolute;
+    color: #ff0000;
+    background-color: #ffcccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 0;
+    margin-left: 0;
+    z-index: 100;
   }
 
   .btnLoginRegister{

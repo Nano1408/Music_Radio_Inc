@@ -149,18 +149,24 @@ const Login = ({ setUsuario }) => {
       const direccion = direccionField.value;
       const ciudad = ciudadField.value;
       const telefono = telefonoField.value;
-      
-      if (emailField.value.length >= 50) {
+
+      const expresiones = {
+       correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Letras, @, punto, numeros, guion y guion_bajo
+       password: /^.{8,20}$/, // 8 a 20 digitos.
+       nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+       apellido: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+       identificacion: /^\d{7,20}$/, // minimo de 7 hasta 20 digitos.
+       direccion: /^[a-zA-Z0-9\s#,'-]*$/, // minimo de 7 hasta 20 digitos.
+       ciudad: /^[a-zA-Z\s]*$/, // minimo de 7 hasta 20 digitos.
+       telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+     }
+
+      if (emailField.value.length >= 50 ) {
         setShowErrorEmail(true);
         return false;
-      } else {
+        
+      }else {
         setShowErrorEmail(false);
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(!emailRegex.test(emailField.value)){
-        alert("El correo no tiene un formato válido");
-        return false;
       }
 
       if(passwordField.value.length >= 20){
