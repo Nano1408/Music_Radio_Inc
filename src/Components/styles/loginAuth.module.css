@@ -258,8 +258,9 @@ h3.formularioValidacionEstado {
   }
 
 .containerLimpiar{
+  display: flex;
   align-items: center;
-  margin-top: 10px;
+  justify-content: center;
 }
 
 .passwordOlvidada{
