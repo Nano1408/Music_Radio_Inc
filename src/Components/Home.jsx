@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { Link } from 'react-router-dom';
+import Header from './Header';
 import Footer from './Footer';
-import { app } from '../fb';
+// import { app } from '../fb';
 import styles from './styles/home.module.css'
 
 const Home = () => {
   
-  const cerrarSesion = () => {
-    app.auth().signOut();
-  }
+  // esta funcion esta en el componente header
+  // const cerrarSesion = () => {
+  //   app.auth().signOut();
+  // }
   
   const [albums, setAlbums] = useState([]);
   const [albumsVideo, setAlbumsVideo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [menu, setMenu] = useState(false);
 
-  const togleMenu = () => {
-    setMenu(!menu)
-  }
+  // esta funcion esta en el componente header
+  // const [menu, setMenu] = useState(false);
+
+  // const togleMenu = () => {
+  //   setMenu(!menu)
+  // }
    
   useEffect(() => {
     const fetchData = async () => {
@@ -48,19 +52,24 @@ const Home = () => {
 // DOM de la pagina
   return (
     <>
-    {/* header encabezado */}
-      <header>
+
+    {/* esta seccion header esta en el componente Header */}
+    {/*<header>
         <ul className={styles.headerUl}>
           <img className={styles.imgLogoHome} src="./Logo_Music_Radio_Inc.png" alt="Logo_Music_Radio_inc.png" />
           <li className={`${menu ? styles.active : ''}`}>
             <button className={styles.hidden}>Buy Now</button>
             <button className={`${styles.hidden}`} onClick={cerrarSesion}>LogOut</button>
+            <Link className={styles.home} to='/'>Home</Link>
+            <Link className={styles.perfil} to='/miperfil'><CgProfile /></Link>
           </li>
 
             <h3> <GiHamburgerMenu className={styles.iconBurgerMenu} onClick={togleMenu} /> </h3>
         </ul>
-      </header>
+      </header> */}
       {/* loading antes de cargar los datos */}
+
+      <Header />
       {isLoading ? (
         // snipper de loading
         <div className={styles.ldsSpinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

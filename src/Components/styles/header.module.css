@@ -1,0 +1,207 @@
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #31302e;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23cc0000' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa0000' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23d6002b' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b10022' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23d9004b' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23b2003d' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23d3006c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23ac0057' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23c4008c' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%239e0071' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23aa00aa' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23880088' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    box-shadow: 0px 4px 9px 0px #31302e;
+    z-index: 99;
+  }
+  
+  .imgLogoHome{
+    max-width: 240px;
+    max-height: 300px;
+  }
+  
+  .iconBurgerMenu{
+    display: none;
+    color: #eadd8e;
+    font-size: 2rem;
+  }
+  
+  .divHeader{
+    display: flex;
+  }
+  .headerUl{
+    position: relative;
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 13px 50px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .headerUl li:nth-child(2){
+      display: flex;
+      justify-content: end;
+      width: 100%;
+      text-align: end;
+      list-style: none;
+      color: #3d048c;
+      align-items: stretch;
+  }
+  
+  /* estilo de la palabra home */
+  .home{
+    font-size: 1.7rem;
+  }
+  .home:hover{
+    color: #8a7840;
+    transition: all .3s ease;
+  }
+  
+  /* boton perfil styles showHover*/
+  /* stilos botones de rutas de paginas */
+  .hidden{
+    display: block;
+    text-decoration: none;
+    text-align: start;
+    font-size: 1.3rem;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .hidden:hover {
+    color: #8a7840;
+  }
+
+  .home {
+    background-color: transparent;
+    text-decoration: none;
+    color: #fff; 
+    margin: 1.3rem 1rem 0 0;
+  }
+
+  .btnPerfilDown div .arrowDown{
+    vertical-align: text-bottom;
+  }
+  .btnPerfilDown{
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    background: none;
+  }
+  .btnPerfilDown:hover{
+    color: #8a7840;
+  }
+  .btnPerfilDown div{
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin: 1.3rem 1rem 0 25px;
+  }
+  .profileIncon{
+    border-left: 1px solid #fff;
+    padding-left: 20px;
+    padding-right: 10px;
+    font-size: 30px;
+  }
+  .ShowHoverdiv{
+    position: absolute;
+    top: 100%;
+    background-color: #31302e;
+    margin-top: 18px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    opacity: 0;
+    transform: translatey(-170%);
+    transition: opacity 0.3s;
+  }
+  .ShowHoverdiv::before{
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 70%;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 16px solid #31302e;
+  }
+  .show{
+    display: block;
+    opacity: 1;
+    transform: translatey(0);
+    transition: opacity 0.3s;
+  }
+  
+  
+  .cerrarSesion{
+      margin-left: 30px;
+  }
+
+  @media screen and (max-width: 860px) {
+
+    header .headerUl{
+      padding: 13px 14px;
+    }
+  
+    .iconBurgerMenu{
+      display: block;
+    }
+  
+    .imgLogoHome {
+      max-width: 190px;
+  }
+
+    .headerUl li:nth-child(2) {
+      position: absolute;
+      flex-direction: column;
+      vertical-align: middle;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #31302e94;
+      left: 0;
+      width: 100%;
+      height: 70vh;
+      top: -1000px;
+      left: -900px;
+      z-index: -1;
+      transition: all 1s ease;
+    }
+  
+    .headerUl li.active{
+      top: 99%;
+      left: 0;
+      transition: all .6s ease;
+      border-radius: 0 0 80% 0;
+      width: 100%;
+      height: 70vh;
+      background-color: #31302e;
+    }
+
+    /* estilos ShowHover profile */
+    .hidden {
+      color: #000;
+    }
+    .ShowHoverdiv::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 70%;
+      width: 0;
+      height: 0;
+      border-left: 16px solid transparent;
+      border-right: 16px solid transparent;
+      border-bottom: 16px solid #ffffff;
+  }
+    .profileIncon {
+      border: none;
+      padding-left: 0px;
+      padding-right: 10px;
+      font-size: 30px;
+    }
+    .ShowHoverdiv {
+      background-color: #ffff;
+      transform: translatey(-300%);
+      transition: opacity 0.3s;
+    }
+    .ShowHoverdiv {
+    transform: translatey(0);
+    top: 20%;
+    }
+
+  }

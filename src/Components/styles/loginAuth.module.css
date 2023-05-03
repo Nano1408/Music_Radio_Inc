@@ -90,7 +90,7 @@ body{
     overflow: hidden;
   }
   
-  label {
+  .labels {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -102,7 +102,7 @@ body{
     cursor: text;
   }
 
-  label::after{
+  .labels::after{
     content: '';
     position: absolute;
     left: 0;
@@ -114,6 +114,7 @@ body{
     transition: all .5s ease;
   }
 
+  /* stilos imputs formulario focus and blur */
   .divFormInput span{
     position: absolute;
     color: #271c60;
@@ -122,19 +123,24 @@ body{
     opacity: 0.5;
   }
 
-  .divFormInput input:focus + label span, .divFormInput input:valid + label span{
+  .divFormInput .inputs:focus + .labels span, .divFormInput .inputs:valid + .labels span{
     transform: translateY(-100%);
     transition: all .3s ease;
     color: #271c60;
     opacity: .7;
   }
 
-  .divFormInput input:focus + label::after, .divFormInput input:valid + label::after{
+  .divFormInput .inputs:focus + .labels::after, .divFormInput .inputs:valid + .labels::after{
     background-color: none;
     transform: translateX(0);
     border-bottom: 3px solid #aa3c9f;
   }
-  
+
+.DiverrorPCondition{
+  display: flex;
+  justify-content: center;
+}
+
 /* Estilos de condición error del formulario */
 .errorFormImputCondition{
   /* position: absolute;
@@ -149,11 +155,6 @@ body{
   width: fit-content;
 }
 
-.DiverrorPCondition{
-  display: flex;
-  justify-content: center;
-}
-
 /* iconos */
 h3.formularioValidacionEstado {
 	position: absolute;
@@ -166,11 +167,11 @@ h3.formularioValidacionEstado {
 	opacity: 1;
 }
 
-  input {
+  .inputs {
     font-family: 'Lilita One', cursive !important;
     padding: 0.5rem;
     width: 95%;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border: none !important;
     /* border-radius: 0.5rem; */
     color: #281c63;
@@ -180,32 +181,32 @@ h3.formularioValidacionEstado {
     margin-top: 22px !important;
   }
 
-    input:-webkit-autofill,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
+    .inputs:-webkit-autofill,
+    .inputs:-webkit-autofill:focus,
+    .inputs:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #fff inset !important;
   }
 
-  input:focus{
+  .inputs:focus{
     outline: none;
     border: none;
     color: #281c63;
   }
   
-  input:invalid:focus {
+  .inputs:invalid:focus {
     color: red;
     outline: none;
     /* border-color: red; */
     /* box-shadow: 0 0 10px red; */
   }
 
-  input:valid:focus{
+  .inputs:valid:focus{
     color: #107c19;
     /* border-color: #107c19; */
     /* box-shadow: 0 0 10px #107c19 !important; */
   }
 
-  input:invalid::before {
+  .inputs:invalid::before {
     content: "Este campo es requerido";
     position: absolute;
     color: #ff0000;
@@ -241,6 +242,7 @@ h3.formularioValidacionEstado {
 
   .containerFormImg .btnRegister button{
     background-color: #281c63;
+    margin: 0;
     width: 100%;
   }
 
@@ -277,7 +279,7 @@ h3.formularioValidacionEstado {
     color: #281c63;
   }
   
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 912px) {
     .containerForm {
     background-size: 60%;
     }

@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+
+/* estilos de la tabla del perfil de los datos */
+.tableCuenta{
+    width: 100%;
+  }
+  
+  .TrTable{
+    display: flex;
+    border-bottom:1px solid #dedede;
+    margin-bottom: 2rem;
+  }
+  
+  .TrTable td:nth-child(1){
+    width: 65%;
+    font-size: 1.3rem;
+    color: #b3b3b3;
+    text-transform: capitalize;
+  }
+  
+  .TrTable td:nth-child(2){
+    text-align: end;
+    text-transform: capitalize;
+  }
+  
+  /* styles plan users */
+  .containerPlanUser{
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .containerPlanUser .titlePlan{
+    font-size: 2rem;
+  }
+  
+  .containerSpotifyPlan{
+    background-color: #b3b3b3;
+    border-radius: 8px;
+  }
+  .div1_PlaFree{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 230px;
+  }
+  .div1_PlaFree .fraseSpotufyFree:nth-child(1){
+    width: 70%;
+    padding: 24px;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .div1_PlaFree .fraseSpotufyFree:nth-child(2){
+    width: 30%;
+  }
+  /* styles descripcion plan spotify */
+  .decripcionContainer{
+    background-color: #fff;
+    border: 2px solid #b3b3b3;
+    border-radius: 0 0 8px 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 24px;
+  }
+  .description{
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .description p{
+    font-size: 1rem
+  }
+  .planAdquirido h3{
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .unetePremium{
+    margin-top: 16px;
+  }
+  .unetePremium a{
+    position: absolute;
+    padding: 13px 26px;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    border: 0.5px solid #000;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .unetePremium a:hover{
+    border: 1px solid #000;
+    transform: scale(1.05);
+  }
+/* container de cerrar sesion en todas partes */
+  .containerParrafoCerrarSesion h3{
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .containerParrafoCerrarSesion p{
+    font-size: 1rem;
+    font-weight: 400;
+    margin-block: 0;
+    padding-block-end: 16px;
+    opacity: 0.7;
+    font-family: 'Prompt', sans-serif;
+  }
+  .containerParrafoCerrarSesion p a{
+    color: #000;
+  }
+
+  /* nota */
+  .divContainerNota{
+    margin-bottom: 1.5rem;
+  }
+  .divContainerNota > .divNota{
+    background-color: #f8f8f8;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #d9dadc;
+}
+  .divNota span{
+   font-size: 1rem;
+   font-weight: 400;
+}
+
+/* bonton cerrar todas las sesiones */
+.btn_Cerrar_Todas_las_Sesiones{
+    padding-bottom: 100px;
+}
+.btn_Cerrar_Todas_las_Sesiones a{
+    position: absolute;
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 30px;
+    border:  0.5px solid #000;
+    padding: 15px 40px; 
+    cursor: pointer;
+}
+.btn_Cerrar_Todas_las_Sesiones a:hover{
+    border:  1px solid #000;
+    transform: scale(1.02);
+}
+
+/* spinner loading */
+.loader{
+    font-size: 20px;
+    color: #b3b3b3;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    position: relative;
+  }
+  .loader:after{
+    content: '';
+    height: 4px;
+    width:0%;
+    display: block;
+    background: #FF3D00;
+    animation: 1s lineGrow linear infinite;
+  }
+  
+  @keyframes lineGrow {
+    to{width: 100%;}
+}
+  

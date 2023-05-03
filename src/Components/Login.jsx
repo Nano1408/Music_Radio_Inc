@@ -27,8 +27,8 @@ const Login = ({ setUsuario }) => {
   
   // funcion de capturar los datos y guardarlos para el registro Users
   const crearUsuario = async (
-    Correo,
-    Password,
+    correo,
+    password,
     Nombre,
     apellido,
     numIdentificacion,
@@ -39,11 +39,11 @@ const Login = ({ setUsuario }) => {
     try {
 
       const usuarioFirebase = await app.auth()
-        .createUserWithEmailAndPassword(Correo, Password);
+        .createUserWithEmailAndPassword(correo, password);
       // Guardar información del usuario en Firestore
       const db = getFirestore(app);
       const usuario = {
-        correo: Correo,
+        correo: correo,
         nombre: Nombre,
         apellido: apellido,
         numIdentificacion: numIdentificacion,
@@ -52,31 +52,34 @@ const Login = ({ setUsuario }) => {
         telefono: telefono,
       };
 
-      // recoge la info de crear usuario y la guarda en la base de datos
-      await setDoc(doc(db, 'Usuarios Music_Radio_Inc', usuarioFirebase.user.uid), usuario);
+      // recoge la info de crear usuario y la guarda en la base de datos (firestore database)
+      await setDoc(doc(db, 'Music_Users', usuarioFirebase.user.uid), usuario);
 
       console.log('usuario creado: ', usuarioFirebase, usuario);
       guardarUsuarioEnLocalStorage(usuarioFirebase);
 
       setUsuario(usuarioFirebase);
 
+      // si el usuario esta registrado rechaza el registro con el catch
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Error! usuario registrado o datos incorrectos!',
-        footer: `<a href=${isRegistrando}>Clic aqui para iniciar sesion...</a>`
+        text: 'Error! usuario registrado!',
+        footer: `<p>Registra un usuario nuevo que no este registrado...</p>`
       })
     }
   };
 
-  const iniciarSesion = async (Correo, Password) => {
+  // funcion asincrona para el inicio de sesion
+  const iniciarSesion = async (correo, password) => {
     try {
-      const usuarioFirebase = await app.auth().signInWithEmailAndPassword(Correo, Password);
+      const usuarioFirebase = await app.auth().signInWithEmailAndPassword(correo, password);
       console.log('sesion iniciada: ', usuarioFirebase.user);
       guardarUsuarioEnLocalStorage(usuarioFirebase);
       setUsuario(usuarioFirebase);
 
+      // captura el error y ejecuta el catch si el email o pass son incorrectos
     } catch (error) {
       if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
         // sweet Alert
@@ -99,6 +102,7 @@ const Login = ({ setUsuario }) => {
     }
   };
 
+  // funcion para que el user pueda restablecer las credenciales
   const restablecerContrasena = async (e) => {
     e.preventDefault();
 
@@ -110,6 +114,7 @@ const Login = ({ setUsuario }) => {
       inputPlaceholder: 'Escribe tu Correo Electronico...'
     })
 
+    // si el email existe en el registro, se envia al correo y se ejecuta esta funcion
     if (email) {
       try {
         await sendPasswordResetEmail(app.auth(), email);
@@ -119,11 +124,12 @@ const Login = ({ setUsuario }) => {
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
+        // si no esta registrado o no existe, lanza este error
       } catch (error) {
         Swal.fire({
           title: 'Error!',
-          text: 'No se pudo enviar el correo electrónico para restablecer la contraseña.',
-          footer: 'Intenta nuevamente enviar el formulario para restablecer las credenciales',
+          text: 'Usuario no existe o no hubo conexion con el servidor.',
+          footer: 'Corrige el correo introducido y vuelve a intentar',
           icon: 'error',
           confirmButtonText: 'Aceptar',
         });
@@ -135,14 +141,14 @@ const Login = ({ setUsuario }) => {
     e.preventDefault();
       // const { emailField, passwordField} = e.target.elements;
       const { emailField, passwordField, NombreField, apellidoField, numIdentificacionField, direccionField, ciudadField, telefonoField } = e.target.elements;
-      const Correo = emailField.value;
-      const Password = passwordField.value;
+      const correo = emailField.value;
+      const password = passwordField.value;
       console.log(emailField.length);
   
     if (isRegistrando === true) {
 
-      const Correo = emailField.value;
-      const Password = passwordField.value;
+      const correo = emailField.value;
+      const password = passwordField.value;
       const Nombre = NombreField.value;
       const apellido = apellidoField.value;
       const numIdentificacion = numIdentificacionField.value;
@@ -150,16 +156,16 @@ const Login = ({ setUsuario }) => {
       const ciudad = ciudadField.value;
       const telefono = telefonoField.value;
 
-      const expresiones = {
-       correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Letras, @, punto, numeros, guion y guion_bajo
-       password: /^.{8,20}$/, // 8 a 20 digitos.
-       nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
-       apellido: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
-       identificacion: /^\d{7,20}$/, // minimo de 7 hasta 20 digitos.
-       direccion: /^[a-zA-Z0-9\s#,'-]*$/, // minimo de 7 hasta 20 digitos.
-       ciudad: /^[a-zA-Z\s]*$/, // minimo de 7 hasta 20 digitos.
-       telefono: /^\d{7,14}$/ // 7 a 14 numeros.
-     }
+    //   const expresiones = {
+    //    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // Letras, @, punto, numeros, guion y guion_bajo
+    //    password: /^.{8,20}$/, // 8 a 20 digitos.
+    //    nombre: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+    //    apellido: /^[a-zA-ZÀ-ÿ\s]{3,40}$/, // Letras y espacios, pueden llevar acentos.
+    //    identificacion: /^\d{7,20}$/, // minimo de 7 hasta 20 digitos.
+    //    direccion: /^[a-zA-Z0-9\s#,'-]*$/, // minimo de 7 hasta 20 digitos.
+    //    ciudad: /^[a-zA-Z\s]*$/, // minimo de 7 hasta 20 digitos.
+    //    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    //  }
 
       if (emailField.value.length >= 50 ) {
         setShowErrorEmail(true);
@@ -219,10 +225,10 @@ const Login = ({ setUsuario }) => {
         setShowErrorTelefono(false);
       }
 
-      await crearUsuario(Correo, Password, Nombre, apellido, numIdentificacion, direccion, ciudad, telefono);
+      await crearUsuario(correo, password, Nombre, apellido, numIdentificacion, direccion, ciudad, telefono);
 
     } else {
-       await iniciarSesion(Correo, Password);
+       await iniciarSesion(correo, password);
       // alert("Te has registrado correctamente")
     }
   };

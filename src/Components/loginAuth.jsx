@@ -43,20 +43,27 @@ const loginAuth = ({
   
     return (
       <div className={styles.containerForm}>
-            <img className={styles.imgLoginAuth} src="./loginAuth.png" alt="loginAuth.png" />
+            <img className={styles.imgLoginAuth} src="/loginAuth.png" alt="loginAuth.png" />
+
+
         {/* seccion del formulario */}
         <section className={styles.containerFormImg}>
         <form className={styles.form} onSubmit={submitHandler}>
           {/* png moreno knabel laemel titok dibujo animate */}
-          <img className={styles.khabyLamel} src="./dibujo-khaby-lame.png" alt="khaby_lamel.png" />
+          <img className={styles.khabyLamel} src="/dibujo-khaby-lame.png" alt="khaby_lamel.png" />
             {/* titulo iniciar sesion o registrate */}
           <h1 className={styles.titleLoginAuth}>{isRegistrando ? 'Registrarme' : 'Bienvenido a Music Radio Inc'}</h1>
+
+
+          {/* ***************************************************************************************************************** */}
+          {/* Seccion de los campos inputs del formulario */}
+          {/* ***************************************************************************************************************** */}
 
           {/* correo */}
           <div className={styles.divFormInput} id="grupo__correo">
             <h3 className={styles.formularioValidacionEstado}> <MdEmail /> </h3>
-            <input type='email' id='emailField' name='emailField' value={correo} onChange={(e) => setCorreo(e.target.value)} required autoComplete='username'/>
-            <label htmlFor='emailField'><span>correo@correo.com</span></label>
+            <input className={styles.inputs} type='email' id='emailField' name='emailField' value={correo} onChange={(e) => setCorreo(e.target.value)} required autoComplete='username'/>
+            <label className={styles.labels} htmlFor='emailField'><span className={styles.span1}>Email</span></label>
           </div>
               {/* Parrafo de error con la condicion de longitud de valores en login */}
           <div className={styles.DiverrorPCondition}>
@@ -66,8 +73,8 @@ const loginAuth = ({
             {/* password */}
             <div className={styles.divFormInput} id="grupo__password">
                 <h3 className={styles.formularioValidacionEstado}> <RiLockPasswordFill /> </h3>
-            <input type='password' id='passwordField' name='passwordField' value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password"/>
-            <label  htmlFor='passwordField' autoComplete="current-password"><span>*********</span></label>
+            <input className={styles.inputs} type='password' id='passwordField' name='passwordField' value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password"/>
+            <label className={styles.labels}  htmlFor='passwordField' autoComplete="current-password"><span className={styles.span}>Contraseña</span></label>
             </div>
               {/* Parrafo de error con la condicion de longitud de valores en login */}
             <div className={styles.DiverrorPCondition}>
@@ -80,8 +87,8 @@ const loginAuth = ({
               {/* nombre */}
               <div className={styles.divFormInput} id="grupo__nombre">
               <h3 className={styles.formularioValidacionEstado}> <MdPersonPin /> </h3>
-                <input type='text' id='NombreField' name='NombreField' value={Nombre} onChange={(e) => setNombre(e.target.value)} required />
-              <label htmlFor='NombreField'><span>Nombre(s)</span></label>
+                <input className={styles.inputs} type='text' id='NombreField' name='NombreField' value={Nombre} onChange={(e) => setNombre(e.target.value)} required />
+              <label className={styles.labels} htmlFor='NombreField'><span className={styles.span}>Nombre(s)</span></label>
               </div>
                 {/* Parrafo de error con la condicion de longitud de valores en login */}
               <div className={styles.DiverrorPCondition}>
@@ -91,8 +98,8 @@ const loginAuth = ({
                   {/* apellido */}
                 <div className={styles.divFormInput} id="grupo__apellido">
                 <h3 className={styles.formularioValidacionEstado}> <MdPersonPin /> </h3>
-                  <input type='text' id='apellidoField' name='apellidoField' value={apellido} onChange={(e) => setApellido(e.target.value)} required/>
-                  <label  htmlFor='apellidoField' autoComplete="current-password"><span>Apellido(s)</span></label>
+                  <input className={styles.inputs} type='text' id='apellidoField' name='apellidoField' value={apellido} onChange={(e) => setApellido(e.target.value)} required/>
+                  <label className={styles.labels}  htmlFor='apellidoField' autoComplete="current-password"><span className={styles.span}>Apellido(s)</span></label>
                 </div>
                   {/* Parrafo de error con la condicion de longitud de valores en login */}
                 <div className={styles.DiverrorPCondition}>
@@ -102,8 +109,8 @@ const loginAuth = ({
                 {/* identificacion */}
                 <div className={styles.divFormInput} id="grupo__identificacion">
                 <h3 className={styles.formularioValidacionEstado}> <HiIdentification /> </h3>
-                <input type='Number' id='numIdentificacionField' name='numIdentificacionField' value={numIdentificacion} onChange={(e) => setnumIdentificacion(e.target.value)} required />
-                <label htmlFor='numIdentificacionField'><span>Identificación</span></label>
+                <input className={styles.inputs} type='Number' id='numIdentificacionField' name='numIdentificacionField' value={numIdentificacion} onChange={(e) => setnumIdentificacion(e.target.value)} required />
+                <label className={styles.labels} htmlFor='numIdentificacionField'><span className={styles.span}>Identificación</span></label>
                 </div>
                   {/* Parrafo de error con la condicion de longitud de valores en login */}
                 <div className={styles.DiverrorPCondition}>
@@ -113,8 +120,8 @@ const loginAuth = ({
                   {/* direccion recidencia */}
                 <div className={styles.divFormInput} id="grupo__direccion">
                 <h3 className={styles.formularioValidacionEstado}> <FaMapMarkerAlt /> </h3>
-                <input type="text" id='direccionField' name='direccionField' value={direccion} onChange={(e) => setdireccion(e.target.value)} required />
-                <label htmlFor='direccionField'><span>Direccion Residencia</span></label>
+                <input className={styles.inputs} type="text" id='direccionField' name='direccionField' value={direccion} onChange={(e) => setdireccion(e.target.value)} required />
+                <label className={styles.labels} htmlFor='direccionField'><span className={styles.span}>Direccion Residencia</span></label>
                 </div>
                   {/* Parrafo de error con la condicion de longitud de valores en login */}
                 <div className={styles.DiverrorPCondition}>
@@ -124,8 +131,8 @@ const loginAuth = ({
                 {/* Ciudad */}
                 <div className={styles.divFormInput} id="grupo__ciudad">
                 <h3 className={styles.formularioValidacionEstado}> <FaCity /> </h3>
-                <input type="text" id='ciudadField' name='ciudadField' value={ciudad} onChange={(e) => setciudad(e.target.value)} required/>
-                <label htmlFor='ciudadField'><span>Ciudad</span></label>
+                <input className={styles.inputs} type="text" id='ciudadField' name='ciudadField' value={ciudad} onChange={(e) => setciudad(e.target.value)} required/>
+                <label className={styles.labels} htmlFor='ciudadField'><span className={styles.span}>Ciudad</span></label>
                 </div>
                   {/* Parrafo de error con la condicion de longitud de valores en login */}
                 <div className={styles.DiverrorPCondition}>
@@ -135,8 +142,8 @@ const loginAuth = ({
                 {/* telefono o celular */}
                 <div className={styles.divFormInput} id="grupo__telefono">
                 <h3 className={styles.formularioValidacionEstado}> <MdPhonelinkRing /> </h3>
-                <input type="tel" pattern="^[0-9]*$" id='telefonoField' name='telefonoField' value={telefono} onChange={(e) => settelefono(e.target.value)} required />
-                <label htmlFor='telefonoField'><span>Nº Celular</span></label>
+                <input className={styles.inputs} type="tel" pattern="^[0-9]*$" id='telefonoField' name='telefonoField' value={telefono} onChange={(e) => settelefono(e.target.value)} required />
+                <label className={styles.labels} htmlFor='telefonoField'><span className={styles.span}>Nº Celular</span></label>
                 </div>
                   {/* Parrafo de error con la condicion de longitud de valores en login */}
                 <div className={styles.DiverrorPCondition}>
