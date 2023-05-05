@@ -160,4 +160,56 @@
   @keyframes lineGrow {
     to{width: 100%;}
 }
-  
+
+
+/* media query responsive */
+@media screen and (max-width:760px) {
+  .titlePlan{
+    font-size: 1.4rem !important;
+  }
+  .TrTable td:nth-child(1) {
+    width: 45%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #b3b3b3;
+    text-transform: capitalize;
+    word-break: keep-all;
+    padding: 1em;
+}
+  .TrTable{
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: baseline;
+  }
+  table{
+    overflow-x: auto;
+  }
+  td {
+    min-width: 100px; 
+    word-break: break-all;
+  }
+  /* estilos de botones y plan */
+  .div1_PlaFree .fraseSpotufyFree:nth-child(1) {
+    padding: 15px;
+    font-size: 1.8rem;
+  }
+  .planAdquirido h3 {
+    font-size: 1.2rem;
+  }
+  .unetePremium a {
+    font-size: 0.8rem;
+  }
+  .containerParrafoCerrarSesion h3 {
+    font-size: 1.125rem;
+  }
+  .btn_Cerrar_Todas_las_Sesiones a {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .titlePlan{
+    font-size: 1.4rem;
+  }
+}

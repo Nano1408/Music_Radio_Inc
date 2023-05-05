@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { AiOutlineHome, AiOutlineAppstore } from "react-icons/ai";
-import { FiEdit } from "react-icons/fi";
 import { MdPassword, MdOutlineNotificationsNone } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl"
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import styles from "../../Components/styles/Perfil.module.css";
@@ -11,8 +12,36 @@ import Cuenta from "./Cuenta.jsx";
 import EditarPerfil from "./EditarPerfil";
 import ResetPassword from "./ResetPassword";
 import Notificaciones from "./Notificaciones";
+import { render } from "react-dom";
+
 
 const MiPerfil = () => {
+
+    const [activeOption, setActiveOption] = useState("Vista general de la cuenta");
+    // menu togle para el menu de opciones del perfil
+    const [showOptions, setShowOptions] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const toggleOptions = () => {
+      setShowOptions(!showOptions);
+      setIsMenuOpen(!isMenuOpen);
+    };
+    
+    // objeto que contiene las opciones y sus respectivos iconos
+    const options = {
+      "Vista general de la cuenta": <AiOutlineHome className={styles.icons} />,
+      "Editar perfil": <FiEdit className={styles.icons} />,
+      "Cambiar contraseña": <MdPassword className={styles.icons} />,
+      "Configurar notificaciones": <MdOutlineNotificationsNone className={styles.icons} />,
+      "Aplicaciones": <AiOutlineAppstore className={styles.icons} />
+    };
+    // función para renderizar el icono correspondiente en función de la opción seleccionada
+    const renderIcon = (option) => {
+      if (options.hasOwnProperty(option)) {
+        return options[option];
+      }
+    };
+
   const components = {
     "Vista general de la cuenta": <Cuenta />,
     "Editar perfil": <EditarPerfil />,
@@ -21,14 +50,14 @@ const MiPerfil = () => {
     // 'Aplicaciones': <Aplicaciones />,
   };
 
-  const [activeOption, setActiveOption] = useState(
-    "Vista general de la cuenta"
-  );
 
   // OnClick para manejar los eventos de cada items
   const handleOptionClick = (option) => {
-    setActiveOption(option);
+      setActiveOption(option);
+      setIsMenuOpen(false);
+      setShowOptions(false); // Oculta las opciones después de hacer clic en una opción
   };
+
 
   return (
     <div className={styles.ContainerPerfil}>
@@ -95,58 +124,65 @@ const MiPerfil = () => {
                 }}
               />
             </div>
+
             {/* div opciones info del perfil */}
             <div className={styles.ContainerOptionIfoProfile}>
-              <ul className={styles.ListOptionProfile}>
+
+              {/* boton togle para el maximo de 930px de despliegue de opciones */}
+              <button className={styles.ToggleOptionsButton} onClick={toggleOptions}>
+                {/* opcion seleccionada al lado del boton menu items */}
+                <li className={`${styles.liItemsProfile} ${styles.coloWhite}`}>
+                    <a>
+                      {renderIcon(activeOption)}
+                      {activeOption}
+                    </a>
+                </li>
+               {isMenuOpen ? <SlArrowUp className={styles.icons} /> : <SlArrowDown className={styles.icons} />}
+              </button>
+
+              {/* menú desplegable */}
+              <ul className={`${styles.ListOptionProfile} ${showOptions ? `${styles.show}` : `${styles.hide}`}`}>
                 {/* vista general del perfil */}
-                <li>
-                  <AiOutlineHome className={styles.icons} />
-                  <a
-                    className={`${styles.liItemsProfile} ${
+                <li className={`${styles.liItemsProfile} ${styles.SelectedOption} ${
                       activeOption === "Vista general de la cuenta"
                         ? `${styles.active} active`
                         : ""
                     }`}
-                    onClick={() =>
-                      handleOptionClick("Vista general de la cuenta")
-                    }
-                  >
+                    onClick={() => handleOptionClick("Vista general de la cuenta")}>
+                  <a>
+                    <AiOutlineHome className={styles.icons} />
                     Vista general de la cuenta
                   </a>
                 </li>
+
                 {/* Editar Perfil */}
-                <li>
-                  <FiEdit className={styles.icons} />
-                  <a
-                    className={`${styles.liItemsProfile} ${
+                <li className={`${styles.liItemsProfile} ${
                       activeOption === "Editar perfil"
                         ? `${styles.active} active`
                         : ""
                     }`}
-                    onClick={() => handleOptionClick("Editar perfil")}
-                  >
+                    onClick={() => handleOptionClick("Editar perfil")}>
+                  <a>
+                    <FiEdit className={styles.icons} />
                     Editar perfil
                   </a>
                 </li>
+
                 {/* Cambiar contraseña */}
-                <li>
-                  <MdPassword className={styles.icons} />
-                  <a
-                    className={`${styles.liItemsProfile} ${
+                <li className={`${styles.liItemsProfile} ${
                       activeOption === "Cambiar contraseña"
                         ? `${styles.active} active`
                         : ""
                     }`}
-                    onClick={() => handleOptionClick("Cambiar contraseña")}
-                  >
+                    onClick={() => handleOptionClick("Cambiar contraseña")}>
+                  <a>
+                    <MdPassword className={styles.icons} />
                     Cambiar contraseña
                   </a>
                 </li>
+
                 {/* Configurar notificaciones */}
-                <li>
-                  <MdOutlineNotificationsNone className={styles.icons} />
-                  <a
-                    className={`${styles.liItemsProfile} ${
+                <li className={`${styles.liItemsProfile} ${
                       activeOption === "Configurar notificaciones"
                         ? `${styles.active} active`
                         : ""
@@ -154,21 +190,23 @@ const MiPerfil = () => {
                     onClick={() =>
                       handleOptionClick("Configurar notificaciones")
                     }
-                  >
+                    >
+                  <a>
+                    <MdOutlineNotificationsNone className={styles.icons} />
                     Configurar notificaciones
                   </a>
                 </li>
+                
                 {/* aplicaciones */}
-                <li>
-                  <AiOutlineAppstore className={styles.icons} />
-                  <a
-                    className={`${styles.liItemsProfile} ${
+                <li className={`${styles.liItemsProfile} ${
                       activeOption === "Aplicaciones"
                         ? `${styles.active} active`
                         : ""
                     }`}
                     onClick={() => handleOptionClick("Aplicaciones")}
-                  >
+                    >
+                  <a>
+                    <AiOutlineAppstore className={styles.icons} />
                     Aplicaciones
                   </a>
                 </li>

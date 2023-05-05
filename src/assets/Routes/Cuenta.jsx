@@ -10,14 +10,10 @@ import cuentastyles from "../../Components/styles/Cuenta.module.css";
 const Cuenta = () => {
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const [activeOption, setActiveOption] = useState("Vista general de la cuenta");
-  // const handleOptionClick = (option) =>{
-  //   setActiveOption(option)
-  // }
-
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
+  
+  // useEffect(() => {
+  //   console.log(userData);
+  // }, [userData]);
 
   useEffect(() => {
     getUserData();

@@ -15,9 +15,9 @@ const EditarPerfil = () => {
     e.target.disabled = true;
   }
 
-  useEffect(()=> {
-    console.log(userData)
-  }, [userData]);
+  // useEffect(()=> {
+  //   console.log(userData)
+  // }, [userData]);
 
   useEffect(() => {
     getUserData()

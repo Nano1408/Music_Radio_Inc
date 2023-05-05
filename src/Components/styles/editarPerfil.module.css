@@ -69,7 +69,7 @@
 .VolverVistaGeneral{
     position: absolute;
     margin-top: -33px;
-    margin-left: 424px;
+    margin-left: 370px;
     color: #6a6a6a;
     font-size: 1.1rem;
     font-weight: 700;
@@ -85,7 +85,8 @@
     display: flex;
     justify-content: center;
     justify-items: center;
-    margin-top: 200px;
+    margin-top: 0px;
+    margin-bottom: 200px;
 }
 .loader {
     width: 25px;
@@ -133,6 +134,40 @@
     100% {
       top: 0;
       color: rgb(75, 73, 73);
+    }
+  }
+
+  /* meida query */
+  @media (max-width:1200px) {
+    .VolverVistaGeneral{
+        margin-left: 10px;
+    }
+  }
+
+  @media screen and (max-width:600px) {
+    .sectionNombreApellido {
+        flex-direction: column;
+    }
+    .sectionNombreApellido .inputOneTwo {
+        width: 100%;
+    }
+  }
+
+  @media screen and (max-width:500px) {
+    .btnEditar {
+        font-size: 15px;
+        padding: 10px 18px;
+    }
+    .VolverVistaGeneral{
+        width: 100%;
+        left: 0;
+        margin-left: 0px;
+        margin-top: -70px;
+        text-align: center;
+    }
+    .divBtnEditarPerfil {
+        margin-bottom: 100px;
+        justify-content: center;
     }
   }
       

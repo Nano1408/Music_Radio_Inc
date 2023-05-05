@@ -1,3 +1,9 @@
+@media (min-width: 992px) {
+  .ContainerSections{
+   width: 970px;
+   margin: 0 auto;
+ } 
+ }
 
 @media (min-width: 1200px) {
  .ContainerSections{
@@ -6,6 +12,7 @@
 } 
 }
 
+
 .ContainerPerfil{
   background-image: linear-gradient(rgb(33, 44, 57), rgb(18, 30, 61) 50%, rgb(0, 0, 0));
   background-repeat: no-repeat;
@@ -13,7 +20,7 @@
 
 .ContainerDiv{
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 35% 65%;
     margin: 0 auto;
 }
 
@@ -108,9 +115,14 @@
 /* ********************************* */
 
 .ListOptionProfile{
-    list-style: none;
-    padding: 0;
-    padding-bottom: 14rem;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  /* padding-bottom: 14rem; */
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .ListOptionProfile li{
@@ -153,8 +165,8 @@
   .liItemsProfile.active:before {
     content: "";
     position: absolute;
-    left: -81px;
-    top: -23px;
+    left: 0;
+    top: 0;
     bottom: 0px;
     width: 4px;
     height: 70px;
@@ -218,9 +230,270 @@
     transform: scale(1.02);
   }
 
+  /* button menu opciones items del perfil */
+  .ToggleOptionsButton {
+    display: none;
+  }
+
 /* media query responsive */
-@media (min-width: 1200px){
-.cLGnSJ {
-    width: 1170px;
+@media screen and (max-width:1200px) {
+  .containerPublicidadPromo h2 {
+    font-size: 40px;
+    font-weight: 900;
+  }
+  .containerPublicidadPromo {
+    padding-top: 10px;
+  }
+  .Obten3meses {
+    text-align: center;
+    padding: 11px 23px;
+    /* font-size: 15px; */
+    /* font-weight: 700; */
+  }
+  .DivCortesia .Obten3meses:nth-child(1){
+    margin-right: 10px;
+  }
+  .Obten3meses:nth-child(2) {
+    margin-left: 0px;
+    border-radius: 50px;
+    padding: 11px 32px;
+  }
+  .DivCortesia {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .sectionPromocion div img {
+    width: auto;
+    height: 260px;
+    border-radius: 40px;
+  }
+  /* seccion de opciones */
+  .liItemsProfile{
+    padding: 10px 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:930px) {
+  .containerPublicidadPromo {
+    padding-inline-end: 0px;
+  }
+  .sectionPromocion {
+    padding: 64px 20px;
+  }
+  .ContainerSectionOne {
+    padding: 1rem 0rem;
+  }
+  .DivCortesia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .DivCortesia .Obten3meses:nth-child(1){
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .sectionPromocion {
+    display: flex;
+    flex-direction: column;
+  }
+  .sectionPromocion div img {
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+  }
+
+  /* container vista general */
+  .ContainerDiv{
+    display: grid;
+    grid-template-columns: 100%;
+    margin: 0 auto;
+  }
+  /* estilo boton editar perfil */
+  .EditarPerfil{
+    top: 1541px;
+  }
+
+  /* opciones del menu del perfil */
+  .liItemsProfile.active {
+    display: none;
+    color: #ffffff;
+  }
+  .ListOptionProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+  .ListOptionProfile li {
+    border-top: none;
+    border-bottom: none;
+    padding-left: 20%;
+  }
+  .DivImagen{
+    display: none;
+  }
+  .ListOptionProfile.show {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 16px;
+    background: #171717f0;
+    transition: .3s;
+    transform: scaleY(1); /* Mostrar menú */
+  }
+  .show {
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+    width: fit-content;
+    pointer-events: auto;
+  }
+  .ListOptionProfile.hide {
+    transition: .3s;
+    transform: scaleY(0); /* Ocultar menú */
+  }
+  
+  .hide {
+    display: none;
+    pointer-events: none;
+  }
+  .ToggleOptionsButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: #000;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .liItemsProfile {
+    padding: 0;
+    list-style: none;
+    width: fit-content;
+  }
+  .coloWhite{
+    color: #fff;
+  }
+  .liItemsProfile a{
+    margin-top: -5px;
+  }
+  .icons {
+    vertical-align: middle;
+    font-size: 2rem;
+    margin: 0 6px 0 10px;
+}
+  .ToggleOptionsButton .liItemsProfile::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0px;
+    width: 4px;
+    height: 100%;
+    background-color: green;
+  }
+
+  /* texto pequeño de promocion */
+  .divTerminosCondiciones {
+    font-size: 13px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+  
+  @media (min-width: 930px) {
+    .ToggleOptionsButton {
+      transition: .3s;
+    }
+    .liItemsProfile.active {
+      display: none;
+  }
+    .SelectedOption{
+      display: none;
+      opacity: 0;
+    }
+  }
+}
+
+
+/* media query para el boton editar perfil */
+@media screen and (max-width: 860px){
+.EditarPerfil {
+    top: 1484px;
+}
+}
+
+@media screen and (max-width:760px) {
+  /* segundo Section de cada vista */
+  .ContainerSectionProfileTwo{
+    padding: 48px 10px;
+  }
+  .containerPublicidadPromo h2 {
+    word-break: break-word;
+    font-size: 30px;
+  }
+  .TextPublicitario {
+    font-size: 15px;
+    font-weight: 500;
+  }
+    .EditarPerfil {
+      top: 1430px;
+  }
+}
+
+@media screen and (max-width:620px) {
+  .EditarPerfil {
+    top: 1420px;
+}
+}
+
+@media screen and (max-width:530px) {
+  .ToggleOptionsButton {
+    font-size: 1.4rem;
+  }
+  .liItemsProfile a {
+    font-size: 1.2rem;
+  }
+  .icons {
+    font-size: 1.4rem;
+}
+}
+@media screen and (max-width:450px) {
+  .EditarPerfil {
+    top: 1407px;
+}
+}
+@media screen and (max-width:425px) {
+  .EditarPerfil {
+    top: 1443px;
+}
+}
+@media screen and (max-width:363px) {
+  .EditarPerfil {
+    top: 1480px;
+}
+}
+@media screen and (max-width:333px) {
+  .EditarPerfil {
+    top: 1480px;
+}
+}
+@media screen and (max-width:321px) {
+  .EditarPerfil {
+    top: 1510px;
+}
+}
+@media screen and (max-width:290px) {
+  .EditarPerfil {
+    top: 1550px;
 }
 }

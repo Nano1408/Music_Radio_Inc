@@ -6,7 +6,7 @@ import './Components/styles/normalize.css'
 import Login from './Components/Login';
 import Home from './Components/Home';
 import MiPerfil from './assets/Routes/miPerfil';
-import EditarPerfil from './assets/Routes/EditarPerfil';
+// import EditarPerfil from './assets/Routes/EditarPerfil';
 
 function App() {
   const [usuario, setUsuario] = React.useState(null);
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={usuario ? <Home /> : <Login setUsuario = {setUsuario}/>} />
         <Route path="/miperfil" element={ usuario ? <MiPerfil /> : <Login setUsuario ={setUsuario} />} />
-        <Route path="/miperfil/editarperfil" element={ usuario ? <EditarPerfil /> : <Login setUsuario ={setUsuario} />} />
+        {/* <Route path="/miperfil/editarperfil" element={ usuario ? <EditarPerfil /> : <Login setUsuario ={setUsuario} />} /> */}
       </Routes>
     </BrowserRouter>
   );
